@@ -163,7 +163,7 @@
             padding-bottom: 0.5rem;
         }
 
-        h9 {
+        h3 {
             color: var(--accent-light);
             margin-bottom: 1.5rem;
             font-size: 1.8rem;
@@ -212,8 +212,7 @@
         .class-photo {
             width: 100%;
             max-width: 600px;
-            height: auto;
-            min-height: 350px;
+            height: 350px;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
@@ -230,7 +229,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
         }
         
         .photo-placeholder {
@@ -346,7 +344,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
             transition: transform 0.3s ease;
         }
         
@@ -383,6 +380,119 @@
             padding: 1rem;
         }
         
+        /* Form Absensi */
+        .attendance-form {
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid rgba(108, 124, 224, 0.3);
+            background-color: rgba(10, 14, 41, 0.7);
+            color: var(--text);
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(108, 124, 224, 0.3);
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .radio-option input {
+            margin: 0;
+        }
+        
+        .btn {
+            background-color: var(--accent);
+            color: var(--text);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-light);
+            transform: translateY(-2px);
+        }
+        
+        .btn-success {
+            background-color: #2ecc71;
+        }
+        
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+        
+        .attendance-table {
+            margin-top: 2rem;
+            overflow-x: auto;
+        }
+        
+        .attendance-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-present {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+        }
+        
+        .status-sick {
+            background-color: rgba(241, 196, 15, 0.2);
+            color: #f1c40f;
+        }
+        
+        .status-permit {
+            background-color: rgba(52, 152, 219, 0.2);
+            color: #3498db;
+        }
+        
+        .status-alpha {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+        }
+        
+        .export-controls {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
         /* Footer */
         footer {
             text-align: center;
@@ -407,40 +517,12 @@
             }
             
             .class-photo {
-                height: auto;
-                min-height: 250px;
+                height: 250px;
             }
             
-            /* Perbaikan untuk gambar di mobile */
-            .class-photo img {
-                width: 100%;
-                height: auto;
-                max-height: 400px;
-                object-fit: contain;
-                object-position: center;
-            }
-            
-            .gallery-item img {
-                width: 100%;
-                height: auto;
-                max-height: 300px;
-                object-fit: contain;
-                object-position: center;
-            }
-        }
-        
-        /* Perbaikan tambahan untuk perangkat sangat kecil */
-        @media (max-width: 480px) {
-            .class-photo {
-                min-height: 200px;
-            }
-            
-            .class-photo img {
-                max-height: 300px;
-            }
-            
-            .gallery-item img {
-                max-height: 250px;
+            .radio-group {
+                flex-direction: column;
+                gap: 0.5rem;
             }
         }
     </style>
@@ -461,6 +543,7 @@
         <button class="nav-btn active" data-target="structure">Struktur Kelas</button>
         <button class="nav-btn" data-target="duty">Jadwal Piket</button>
         <button class="nav-btn" data-target="timetable">Jadwal Pelajaran</button>
+        <button class="nav-btn" data-target="attendance">Absensi Kelas</button>
         <button class="nav-btn" data-target="gallery">Foto Kreasi Kelas</button>
     </nav>
     
@@ -548,12 +631,12 @@
                 </table>    
         
                 <div class="duty-schedule">
-                    <h9>Tanggung Jawab Piket</h9>                           
+                    <h3>Tanggung Jawab Piket</h3>                           
                     <ul>
-                         <li>1.Menyapu lantai kelas sebelum dan sesudah pelajaran</li>
-                         <li>2.Membersihkan papan tulis</li>
-                         <li>3.Mengatur kembali kursi dan meja yang berantakan</li>
-                         <li>4.Memastikan sampah di tempat sampah sudah dibuang</li>
+                         <li>1. Menyapu lantai kelas sebelum dan sesudah pelajaran</li>
+                         <li>2. Membersihkan papan tulis</li>
+                         <li>3. Mengatur kembali kursi dan meja yang berantakan</li>
+                         <li>4. Memastikan sampah di tempat sampah sudah dibuang</li>
                    </ul>
                </div>
         </section>
@@ -712,6 +795,117 @@
             </div>
         </section>
         
+        <!-- Absensi Kelas -->
+        <section id="attendance" class="content-section">
+            <h2>Absensi Kelas X-DKV</h2>
+            
+            <div class="attendance-form">
+                <div class="form-group">
+                    <label for="attendance-date">Tanggal</label>
+                    <input type="date" id="attendance-date" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="student-name">Nama Siswa</label>
+                    <select id="student-name" class="form-control" required>
+                        <option value="">Pilih Siswa</option>
+                        <option value="Airlangga">Airlangga</option>
+                        <option value="Alya">Alya</option>
+                        <option value="Baldi">Baldi</option>
+                        <option value="Bintang">Bintang</option>
+                        <option value="Cinta Cantika">Cinta Cantika</option>
+                        <option value="Dafina">Dafina</option>
+                        <option value="Davina">Davina</option>
+                        <option value="Denis">Denis</option>
+                        <option value="Fahrudin">Fahrudin</option>
+                        <option value="Fairuz">Fairuz</option>
+                        <option value="Farid">Farid</option>
+                        <option value="Fathur">Fathur</option>
+                        <option value="Hakim">Hakim</option>
+                        <option value="Hana">Hana</option>
+                        <option value="Ihsan">Ihsan</option>
+                        <option value="Keyla">Keyla</option>
+                        <option value="Kiya">Kiya</option>
+                        <option value="Ludpi">Ludpi</option>
+                        <option value="Mahesa">Mahesa</option>
+                        <option value="Mulyani">Mulyani</option>
+                        <option value="Nafis">Nafis</option>
+                        <option value="Nayla">Nayla</option>
+                        <option value="Nelvanza">Nelvanza</option>
+                        <option value="Nico">Nico</option>
+                        <option value="Nizar">Nizar</option>
+                        <option value="Piana">Piana</option>
+                        <option value="Queen">Queen</option>
+                        <option value="Radhinka">Radhinka</option>
+                        <option value="Rafael">Rafael</option>
+                        <option value="Raka">Raka</option>
+                        <option value="Rama">Rama</option>
+                        <option value="Rasya">Rasya</option>
+                        <option value="Rehan">Rehan</option>
+                        <option value="Revaldi">Revaldi</option>
+                        <option value="Revan">Revan</option>
+                        <option value="Rezky">Rezky</option>
+                        <option value="Ridho">Ridho</option>
+                        <option value="Salsabila">Salsabila</option>
+                        <option value="Satrio">Satrio</option>
+                        <option value="Selvi">Selvi</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Status Kehadiran</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="status-present" name="attendance-status" value="Hadir" required>
+                            <label for="status-present">Hadir</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="status-sick" name="attendance-status" value="Sakit">
+                            <label for="status-sick">Sakit</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="status-permit" name="attendance-status" value="Izin">
+                            <label for="status-permit">Izin</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="status-alpha" name="attendance-status" value="Alpha">
+                            <label for="status-alpha">Alpha</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">Catatan (Opsional)</label>
+                    <textarea id="notes" class="form-control" rows="3" placeholder="Tambahkan catatan jika diperlukan..."></textarea>
+                </div>
+                
+                <button id="save-attendance" class="btn">Simpan Absensi</button>
+            </div>
+            
+            <div class="attendance-table">
+                <h3>Riwayat Absensi</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Nama Siswa</th>
+                            <th>Status</th>
+                            <th>Catatan</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendance-list">
+                        <!-- Data absensi akan dimuat di sini -->
+                    </tbody>
+                </table>
+                
+                <div class="export-controls">
+                    <button id="export-csv" class="btn btn-success">Ekspor ke CSV</button>
+                    <button id="clear-data" class="btn">Hapus Semua Data</button>
+                </div>
+            </div>
+        </section>
+        
         <!-- Foto Kreasi Kelas -->
         <section id="gallery" class="content-section">
             <h2>Foto-Foto Kreasi Kelas Hutan</h2>
@@ -813,15 +1007,15 @@
                 
                 // Ukuran acak untuk bintang
                 const size = Math.random() * 3;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
+                star.style.width = ${size}px;
+                star.style.height = ${size}px;
                 
                 // Posisi acak
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = ${Math.random() * 100}%;
+                star.style.top = ${Math.random() * 100}%;
                 
                 // Animasi delay acak
-                star.style.animationDelay = `${Math.random() * 5}s`;
+                star.style.animationDelay = ${Math.random() * 5}s;
                 
                 starsContainer.appendChild(star);
             }
@@ -844,12 +1038,168 @@
                 // Tampilkan section yang sesuai
                 const targetId = this.getAttribute('data-target');
                 document.getElementById(targetId).classList.add('active');
+                
+                // Jika target adalah absensi, muat data
+                if (targetId === 'attendance') {
+                    loadAttendanceData();
+                }
             });
         });
+        
+        // Fungsi untuk absensi
+        function loadAttendanceData() {
+            const attendanceList = document.getElementById('attendance-list');
+            const attendanceData = JSON.parse(localStorage.getItem('attendanceData')) || [];
+            
+            attendanceList.innerHTML = '';
+            
+            if (attendanceData.length === 0) {
+                attendanceList.innerHTML = '<tr><td colspan="5" style="text-align: center;">Belum ada data absensi</td></tr>';
+                return;
+            }
+            
+            // Urutkan data berdasarkan tanggal (terbaru di atas)
+            attendanceData.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            attendanceData.forEach((record, index) => {
+                const row = document.createElement('tr');
+                
+                // Format tanggal
+                const date = new Date(record.date);
+                const formattedDate = date.toLocaleDateString('id-ID', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                
+                // Tentukan kelas status
+                let statusClass = '';
+                switch(record.status) {
+                    case 'Hadir': statusClass = 'status-present'; break;
+                    case 'Sakit': statusClass = 'status-sick'; break;
+                    case 'Izin': statusClass = 'status-permit'; break;
+                    case 'Alpha': statusClass = 'status-alpha'; break;
+                }
+                
+                row.innerHTML = `
+                    <td>${formattedDate}</td>
+                    <td>${record.student}</td>
+                    <td><span class="attendance-status ${statusClass}">${record.status}</span></td>
+                    <td>${record.notes || '-'}</td>
+                    <td><button class="btn" onclick="deleteAttendanceRecord(${index})">Hapus</button></td>
+                `;
+                
+                attendanceList.appendChild(row);
+            });
+        }
+        
+        function saveAttendanceRecord() {
+            const date = document.getElementById('attendance-date').value;
+            const student = document.getElementById('student-name').value;
+            const status = document.querySelector('input[name="attendance-status"]:checked');
+            const notes = document.getElementById('notes').value;
+            
+            // Validasi form
+            if (!date || !student || !status) {
+                alert('Harap lengkapi semua field yang wajib diisi!');
+                return;
+            }
+            
+            // Ambil data yang sudah ada
+            const attendanceData = JSON.parse(localStorage.getItem('attendanceData')) || [];
+            
+            // Tambah data baru
+            attendanceData.push({
+                date: date,
+                student: student,
+                status: status.value,
+                notes: notes
+            });
+            
+            // Simpan ke localStorage
+            localStorage.setItem('attendanceData', JSON.stringify(attendanceData));
+            
+            // Reset form
+            document.getElementById('attendance-date').value = '';
+            document.getElementById('student-name').value = '';
+            document.querySelectorAll('input[name="attendance-status"]').forEach(radio => {
+                radio.checked = false;
+            });
+            document.getElementById('notes').value = '';
+            
+            // Muat ulang data
+            loadAttendanceData();
+            
+            alert('Absensi berhasil disimpan!');
+        }
+        
+        function deleteAttendanceRecord(index) {
+            if (confirm('Apakah Anda yakin ingin menghapus data absensi ini?')) {
+                const attendanceData = JSON.parse(localStorage.getItem('attendanceData')) || [];
+                attendanceData.splice(index, 1);
+                localStorage.setItem('attendanceData', JSON.stringify(attendanceData));
+                loadAttendanceData();
+            }
+        }
+        
+        function exportToCSV() {
+            const attendanceData = JSON.parse(localStorage.getItem('attendanceData')) || [];
+            
+            if (attendanceData.length === 0) {
+                alert('Tidak ada data absensi untuk diekspor!');
+                return;
+            }
+            
+            // Buat header CSV
+            let csvContent = "Tanggal,Nama Siswa,Status,Catatan\n";
+            
+            // Tambahkan data
+            attendanceData.forEach(record => {
+                const date = new Date(record.date);
+                const formattedDate = date.toLocaleDateString('id-ID', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                
+                csvContent += "${formattedDate}","${record.student}","${record.status}","${record.notes || ''}"\n;
+            });
+            
+            // Buat file dan unduh
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', absensi-x-dkv-${new Date().toISOString().slice(0,10)}.csv);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        function clearAllData() {
+            if (confirm('Apakah Anda yakin ingin menghapus semua data absensi? Tindakan ini tidak dapat dibatalkan!')) {
+                localStorage.removeItem('attendanceData');
+                loadAttendanceData();
+                alert('Semua data absensi telah dihapus!');
+            }
+        }
         
         // Inisialisasi
         document.addEventListener('DOMContentLoaded', function() {
             createStars();
+            
+            // Set tanggal default ke hari ini
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('attendance-date').value = today;
+            
+            // Event listener untuk absensi
+            document.getElementById('save-attendance').addEventListener('click', saveAttendanceRecord);
+            document.getElementById('export-csv').addEventListener('click', exportToCSV);
+            document.getElementById('clear-data').addEventListener('click', clearAllData);
+            
+            // Muat data absensi jika ada
+            loadAttendanceData();
         });
     </script>
 </body>
