@@ -212,7 +212,8 @@
         .class-photo {
             width: 100%;
             max-width: 600px;
-            height: 350px;
+            height: auto;
+            min-height: 350px;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
@@ -229,6 +230,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
         }
         
         .photo-placeholder {
@@ -344,6 +346,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             transition: transform 0.3s ease;
         }
         
@@ -404,7 +407,40 @@
             }
             
             .class-photo {
-                height: 250px;
+                height: auto;
+                min-height: 250px;
+            }
+            
+            /* Perbaikan untuk gambar di mobile */
+            .class-photo img {
+                width: 100%;
+                height: auto;
+                max-height: 400px;
+                object-fit: contain;
+                object-position: center;
+            }
+            
+            .gallery-item img {
+                width: 100%;
+                height: auto;
+                max-height: 300px;
+                object-fit: contain;
+                object-position: center;
+            }
+        }
+        
+        /* Perbaikan tambahan untuk perangkat sangat kecil */
+        @media (max-width: 480px) {
+            .class-photo {
+                min-height: 200px;
+            }
+            
+            .class-photo img {
+                max-height: 300px;
+            }
+            
+            .gallery-item img {
+                max-height: 250px;
             }
         }
     </style>
