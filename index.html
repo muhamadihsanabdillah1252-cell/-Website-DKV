@@ -2,857 +2,572 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>X-DKV - Struktur Kelas & Jadwal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>X-DKV | Kelas Hutan — Kreatif, Kolaboratif, Inspiratif</title>
     <style>
-        /* Reset dan variabel */
-        :root {
-            --primary: #0a0e29;
-            --secondary: #1a1f4b;
-            --accent: #4d5bce;
-            --accent-light: #6c7ce0;
-            --text: #ffffff;
-            --text-secondary: #b8c1ec;
-            --star-color: #ffffff;
-            --planet-color: #ff6b6b;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            background-color: var(--primary);
-            color: var(--text);
-            min-height: 100vh;
+            background-color: #fef9e8;
+            font-family: 'Poppins', 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            color: #1e2a2f;
+            line-height: 1.5;
             overflow-x: hidden;
-            position: relative;
         }
-        
-        /* Background bertema angkasa */
-        .space-background {
+
+        /* tipografi khas DKV : bold, ekspresif */
+        h1, h2, h3, .nav-btn, .class-card h3, .day-card h3 {
+            font-family: 'Montserrat', 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        /* background dinamis & playful */
+        .bg-art {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
+            z-index: -2;
+            background: linear-gradient(145deg, #fff6e5 0%, #ffe6d5 100%);
+        }
+
+        /* elemen geometris dan coretan artistik */
+        .bg-pattern {
+            position: fixed;
+            inset: 0;
             z-index: -1;
-            overflow: hidden;
+            opacity: 0.4;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path fill="none" stroke="%23ffb347" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 6" d="M20 30 L180 30 M30 50 L170 50 M10 80 L190 80 M40 110 L160 110 M25 140 L175 140 M15 170 L185 170 M80 20 L80 180 M120 25 L120 175 M55 40 L55 160 M145 35 L145 165"/><circle cx="50" cy="50" r="8" fill="%23ffb87c" fill-opacity="0.3"/><polygon points="160,30 170,50 150,50" fill="%23ffaa66" fill-opacity="0.3"/><path d="M30 150 L50 130 L70 150" stroke="%23e07a5f" fill="none" stroke-width="2"/></svg>');
+            background-repeat: repeat;
+            background-size: 60px;
         }
-        
-        .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: transparent;
-        }
-        
-        .star {
-            position: absolute;
-            background-color: var(--star-color);
+
+        /* splash warna-warni (aksen khas anak dkv) */
+        .splash {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(255,180,71,0.2) 0%, rgba(255,212,128,0) 80%);
             border-radius: 50%;
-            animation: twinkle 5s infinite;
+            pointer-events: none;
+            z-index: 0;
         }
-        
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.2; }
-            50% { opacity: 1; }
-        }
-        
-        .planet {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, var(--planet-color), #c44569);
+        .splash-left {
             top: 10%;
-            right: 10%;
-            box-shadow: 0 0 40px rgba(255, 107, 107, 0.5);
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(112,193,179,0.2) 0%, rgba(112,193,179,0) 70%);
         }
-        
-        /* Header */
+
+        /* header dengan vibe gallery */
         header {
             text-align: center;
-            padding: 2rem 1rem;
-            background: linear-gradient(to bottom, rgba(10, 14, 41, 0.9), transparent);
+            padding: 3rem 2rem 1.5rem;
             position: relative;
+            z-index: 2;
+            backdrop-filter: blur(2px);
         }
-        
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, #6c7ce0, #b8c1ec);
-            -webkit-background-clip: text;
+            font-size: 4.2rem;
+            background: linear-gradient(135deg, #e37d3b, #c74f2b, #d68b45);
             background-clip: text;
+            -webkit-background-clip: text;
             color: transparent;
-            text-shadow: 0 0 10px rgba(108, 124, 224, 0.3);
+            text-shadow: 0 5px 12px rgba(0,0,0,0.05);
+            letter-spacing: -1px;
         }
-        
         .subtitle {
-            color: var(--text-secondary);
             font-size: 1.2rem;
+            background: #f4e2c6;
+            display: inline-block;
+            padding: 0.3rem 1.5rem;
+            border-radius: 60px;
+            color: #b45f2b;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+            margin-top: 0.5rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
         }
-        
-        /* Navigasi */
+
+        /* navigasi seperti karya seni */
         nav {
             display: flex;
             justify-content: center;
-            margin: 1.5rem 0;
             flex-wrap: wrap;
+            gap: 0.9rem;
+            margin: 1.8rem 1rem 2rem;
+            position: relative;
+            z-index: 3;
         }
-        
         .nav-btn {
-            background-color: var(--secondary);
-            color: var(--text);
-            border: none;
-            padding: 0.8rem 1.5rem;
-            margin: 0.5rem;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            background: rgba(255, 248, 235, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid #ffcd94;
+            padding: 0.75rem 1.8rem;
+            border-radius: 48px;
             font-weight: 600;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            font-size: 1rem;
+            color: #7b3f1a;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+            letter-spacing: -0.2px;
         }
-        
         .nav-btn:hover {
-            background-color: var(--accent);
+            background: #ffdbb5;
+            border-color: #e09d5e;
             transform: translateY(-3px);
+            box-shadow: 0 12px 20px -12px rgba(0,0,0,0.2);
         }
-        
         .nav-btn.active {
-            background-color: var(--accent);
-            box-shadow: 0 0 15px var(--accent-light);
-        }
-        
-        /* Konten utama */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-        
-        .content-section {
-            display: none;
-            background-color: rgba(26, 31, 75, 0.7);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(108, 124, 224, 0.2);
-        }
-        
-        .content-section.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        h2 {
-            color: var(--accent-light);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 0.5rem;
+            background: #e37d3b;
+            border-color: #ffffff;
+            color: white;
+            box-shadow: 0 10px 18px -6px #e37d3b70;
         }
 
-        h9 {
-            color: var(--accent-light);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
+        /* container utama dengan card kreatif */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.8rem 2rem;
+            position: relative;
+            z-index: 2;
         }
-        
-        /* Struktur Kelas */
-        .class-structure {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
+
+        .content-section {
+            display: none;
+            background: rgba(255, 252, 245, 0.92);
+            backdrop-filter: blur(10px);
+            border-radius: 48px 32px 48px 32px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255,255,240,0.8);
+            border: 1px solid rgba(255,215,170,0.7);
+            transition: all 0.3s;
         }
-        
-        .class-card {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(108, 124, 224, 0.3);
+        .content-section.active {
+            display: block;
+            animation: floatFade 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
-        
-        .class-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(108, 124, 224, 0.3);
+        @keyframes floatFade {
+            0% { opacity: 0; transform: translateY(28px) scale(0.97); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
-        
-        .class-card h3 {
-            color: var(--accent-light);
-            margin-bottom: 1rem;
+
+        h2 {
+            font-size: 2.2rem;
+            color: #c4582c;
+            border-left: 7px solid #f3b47b;
+            padding-left: 1.2rem;
+            margin-bottom: 1.8rem;
+            display: inline-block;
         }
-        
-        .class-card p {
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Foto Kelas */
+
+        /* foto kelas & struktur grid modern */
         .class-photo-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 2rem 0;
+            margin-bottom: 2.8rem;
         }
-        
         .class-photo {
             width: 100%;
-            max-width: 600px;
-            height: auto;
-            min-height: 350px;
-            border-radius: 15px;
+            max-width: 720px;
+            border-radius: 42px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            margin-bottom: 1rem;
-            position: relative;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--accent-light);
+            box-shadow: 0 25px 35px -12px rgba(0,0,0,0.25);
+            transition: transform 0.3s;
+            background: #fff0e0;
+            border: 3px solid white;
         }
-        
         .class-photo img {
             width: 100%;
-            height: 100%;
+            display: block;
+            aspect-ratio: 16/9;
             object-fit: cover;
-            object-position: center;
+            object-position: center 30%;
         }
-        
-        .photo-placeholder {
-            color: var(--text-secondary);
-            font-style: italic;
-            text-align: center;
-            padding: 2rem;
-        }
-        
         .photo-caption {
-            color: var(--text-secondary);
-            text-align: center;
-            font-size: 1rem;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
+            background: #e9dbc9;
+            padding: 0.3rem 1.2rem;
+            border-radius: 60px;
+            font-weight: 500;
+            color: #9b5a2e;
         }
-        
-        /* Jadwal Piket */
+
+        .class-structure {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+        .class-card {
+            background: white;
+            border-radius: 32px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: all 0.25s;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+            border: 1px solid #ffe1bc;
+        }
+        .class-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -12px rgba(221, 122, 48, 0.2);
+            border-color: #f3bc86;
+        }
+        .class-card h3 {
+            font-size: 1.45rem;
+            color: #c4582c;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+            border-bottom: 2px dashed #f3b47b;
+        }
+        .class-card p {
+            margin: 0.4rem 0;
+            font-weight: 500;
+            color: #2d3e42;
+        }
+
+        /* tabel piket yang rapi dan artistik */
         .duty-schedule {
             overflow-x: auto;
         }
-        
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 1rem;
+            border-radius: 28px;
+            background: #fffbf4;
         }
-        
         th, td {
-            padding: 1rem;
+            padding: 1rem 1rem;
             text-align: left;
-            border-bottom: 1px solid rgba(108, 124, 224, 0.2);
+            border-bottom: 1px solid #ffe1be;
         }
-        
         th {
-            background-color: rgba(108, 124, 224, 0.2);
-            color: var(--accent-light);
-            font-weight: 600;
+            background: #ffebd2;
+            color: #b6491c;
+            font-weight: 700;
         }
-        
-        tr:hover {
-            background-color: rgba(108, 124, 224, 0.1);
+        .duty-schedule ul {
+            margin-top: 2rem;
+            background: #fef2e6;
+            padding: 1.5rem 2rem;
+            border-radius: 32px;
+            list-style: none;
         }
-        
-        /* Jadwal Pelajaran */
+        .duty-schedule li {
+            margin: 0.7rem 0;
+            font-weight: 500;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+        .duty-schedule li::before {
+            content: "🎨";
+            position: absolute;
+            left: 0;
+            color: #e37d3b;
+        }
+
+        /* jadwal pelajaran dengan gaya modern */
         .timetable {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
         }
-        
         .day-card {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            border-radius: 10px;
+            background: white;
+            border-radius: 32px;
             padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(108, 124, 224, 0.3);
+            transition: 0.2s;
+            border: 1px solid #ffe0bd;
         }
-        
         .day-card h3 {
-            color: var(--accent-light);
-            margin-bottom: 1rem;
-            text-align: center;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid rgba(108, 124, 224, 0.3);
+            background: #ffdcc0;
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            border-radius: 60px;
+            font-size: 1.5rem;
+            margin-bottom: 1.4rem;
+            color: #9c4b22;
         }
-        
         .subject {
             display: flex;
             justify-content: space-between;
             padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(108, 124, 224, 0.1);
+            border-bottom: 1px dashed #ffe0bc;
         }
-        
-        .subject:last-child {
-            border-bottom: none;
-        }
-        
         .subject-name {
-            color: var(--text);
+            font-weight: 600;
+            color: #2d4a41;
         }
-        
         .subject-time {
-            color: var(--text-secondary);
+            font-family: monospace;
+            background: #f9efdf;
+            padding: 0.2rem 0.7rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
         }
-        
-        /* Foto Kreasi Kelas */
+
+        /* galeri keren dengan efek polaroid */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 1.2rem;
         }
-        
         .gallery-item {
-            position: relative;
-            border-radius: 10px;
+            background: white;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-            aspect-ratio: 1/1;
-            background-color: var(--secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 12px 22px -12px rgba(0,0,0,0.1);
+            transform: rotate(0deg);
+            border: 1px solid #ffe5c8;
         }
-        
         .gallery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(108, 124, 224, 0.3);
+            transform: scale(1.02) rotate(0.6deg);
+            box-shadow: 0 24px 28px -12px rgba(0,0,0,0.2);
         }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(10, 14, 41, 0.8);
-            padding: 0.8rem;
-            color: var(--text);
-            font-size: 0.9rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
-        }
-        
         .placeholder-img {
-            width: 100%;
-            height: 100%;
+            background: #f2e2cf;
+            min-height: 190px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-secondary);
+            color: #c4804a;
+            font-weight: 500;
             font-style: italic;
-            text-align: center;
-            padding: 1rem;
+            background-image: repeating-linear-gradient(45deg, #ffedd9 0px, #ffedd9 15px, #ffe1c4 15px, #ffe1c4 30px);
         }
-        
-        /* Footer */
+        .gallery-caption {
+            padding: 1rem;
+            text-align: center;
+            background: #fff6ea;
+            font-weight: 500;
+            color: #aa633a;
+            letter-spacing: -0.2px;
+        }
+
+        /* footer kreatif */
         footer {
             text-align: center;
             padding: 2rem;
-            color: var(--text-secondary);
-            margin-top: 2rem;
-            border-top: 1px solid rgba(108, 124, 224, 0.2);
+            color: #b87a48;
+            border-top: 2px dotted #ffddb0;
+            margin-top: 1rem;
+            font-weight: 500;
         }
-        
-        /* Responsif */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .class-structure, .timetable, .gallery {
-                grid-template-columns: 1fr;
-            }
-            
-            .content-section {
-                padding: 1.5rem;
-            }
-            
-            .class-photo {
-                height: auto;
-                min-height: 250px;
-            }
-            
-            /* Perbaikan untuk gambar di mobile */
-            .class-photo img {
-                width: 100%;
-                height: auto;
-                max-height: 400px;
-                object-fit: contain;
-                object-position: center;
-            }
-            
-            .gallery-item img {
-                width: 100%;
-                height: auto;
-                max-height: 300px;
-                object-fit: contain;
-                object-position: center;
-            }
+
+        /* responsive tambahan */
+        @media (max-width: 720px) {
+            h1 { font-size: 2.6rem; }
+            .content-section { padding: 1.5rem; border-radius: 32px; }
+            .nav-btn { padding: 0.5rem 1.2rem; font-size: 0.85rem;}
+            .class-structure { gap: 1rem;}
+            .timetable { gap: 1rem; }
         }
-        
-        /* Perbaikan tambahan untuk perangkat sangat kecil */
         @media (max-width: 480px) {
-            .class-photo {
-                min-height: 200px;
-            }
-            
-            .class-photo img {
-                max-height: 300px;
-            }
-            
-            .gallery-item img {
-                max-height: 250px;
-            }
+            .subject { flex-direction: column; gap: 0.3rem;}
+            .subject-time { align-self: flex-start; }
+        }
+
+        /* efek coretan playful */
+        .doodle {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-size: 48px;
+            opacity: 0.2;
+            pointer-events: none;
+            z-index: 0;
+            transform: rotate(-8deg);
         }
     </style>
 </head>
 <body>
-    <!-- Background bertema angkasa -->
-    <div class="space-background">
-        <div class="stars" id="stars"></div>
-        <div class="planet"></div>
-    </div>
-    
-    <header>
-        <h1>KELAS X-DKV</h1>
-        <p class="subtitle">Website Kelas X-Desain Komunikasi Visual</p>
-    </header>
-    
-    <nav>
-        <button class="nav-btn active" data-target="structure">Struktur Kelas</button>
-        <button class="nav-btn" data-target="duty">Jadwal Piket</button>
-        <button class="nav-btn" data-target="timetable">Jadwal Pelajaran</button>
-        <button class="nav-btn" data-target="gallery">Foto Kreasi Kelas</button>
-    </nav>
-    
-    <div class="container">
-        <!-- Struktur Kelas -->
-        <section id="structure" class="content-section active">
-            <h2>Struktur Kelas</h2>
-            
-            <!-- Foto Kelas Bersama -->
-            <div class="class-photo-container">
-                <div class="class-photo">
-                    <img src="foto-kreasi/IMG_20260419_122406.jpg" alt="Foto Kelas X-DKV">
-                </div>
-                <p class="photo-caption">Foto Kelas X-DKV - Kelas Hutan - Tahun 2026</p>
-            </div>
-            
-            <div class="class-structure">
-                <div class="class-card">
-                    <h3>Wali Kelas</h3>
-                    <p>M. Ramdhan Azis. S.Pd.</p>
-                </div>
-                <div class="class-card">
-                    <h3>Ketua Kelas</h3>
-                    <p>M. Nizar Ali</p>
-                </div>
-                <div class="class-card">
-                    <h3>Wakil Ketua</h3>
-                    <p>Satrio Nugroho</p>
-                </div>
-                <div class="class-card">
-                    <h3>Sekretaris</h3>
-                    <p>Selvi Febrianti</p>
-                    <p>Keyla Alisa Rahman</p>
-                </div>
-                <div class="class-card">
-                    <h3>Bendahara</h3>
-                    <p>Davina Amelia</p>
-                    <p>Alya Maulida Hafiz</p>
-                </div>
-                <div class="class-card">
-                    <h3>Koordinator Piket</h3>
-                    <p>Rama Aughust Sanjaya</p>
-                    <p>M. Ihsan Abdillah</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Jadwal Piket -->
-        <section id="duty" class="content-section">
-            <h2>Jadwal Piket Kelas</h2>
-            <div class="duty-schedule">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Hari</th>
-                            <th>Nama Siswa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Senin</td>
-                            <td>Hakim, Rehan, Hana, Radhinka, Nizar, Revan, Ridho</td>
-                        </tr>
-                        <tr>
-                            <td>Selasa</td>
-                            <td>Alya, Farid, Fairuz, Rama, Kiya, Ludpi, Piana</td>
-                        </tr>
-                        <tr>
-                            <td>Rabu</td>
-                            <td>Airlangga, Davina, Mahesa, Mulyani, Rafael, Salsabila</td>
-                        </tr>
-                        <tr>
-                            <td>Kamis</td>
-                            <td>Bintang, Fahrudin, Ihsan, Nayla, Queen, Rezky</td>
-                        </tr>
-                        <tr>
-                            <td>Jumat</td>
-                            <td>Dafina, Denis, Baldi, Nafis, Raka, Rasya, Selvi</td>
-                        </tr>
-                        <tr>
-                            <td>Sabtu</td>
-                            <td>Cinta Cantika, Keyla, Fathur, Nelvanza, Nico, Revaldi, Satrio</td>
-                        </tr>
-                    </tbody>
-                </table>    
-        
-                <div class="duty-schedule">
-                    <h9>Tanggung Jawab Piket</h9>                           
-                    <ul>
-                         <li>1.Menyapu lantai kelas sebelum dan sesudah pelajaran</li>
-                         <li>2.Membersihkan papan tulis</li>
-                         <li>3.Mengatur kembali kursi dan meja yang berantakan</li>
-                         <li>4.Memastikan sampah di tempat sampah sudah dibuang</li>
-                   </ul>
-               </div>
-        </section>
-        
-        <!-- Jadwal Pelajaran -->
-        <section id="timetable" class="content-section">
-            <h2>Jadwal Pelajaran</h2>
-            <div class="timetable">
-                <div class="day-card">
-                    <h3>Senin</h3>
-                    <div class="subject">
-                        <span class="subject-name">PBAI</span>
-                        <span class="subject-time">12:45 - 14:30</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Sejarah</span>
-                        <span class="subject-time">14:30 - 15:40</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Istirahat</span>
-                        <span class="subject-time">15:40 - 16:00</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">KKA</span>
-                        <span class="subject-time">16:00 - 17:10</span>
-                    </div>
-                </div>
-                
-                <div class="day-card">
-                    <h3>Selasa</h3>
-                    <div class="subject">
-                        <span class="subject-name">Informatika</span>
-                        <span class="subject-time">07:30 - 09:45</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Istirahat Pagi </span>
-                        <span class="subject-time">09:45 - 10:05</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Bahasa Inggris</span>
-                        <span class="subject-time">10:05 - 12:20</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Istirahat Siang</span>
-                        <span class="subject-time">12:20 - 12:45</span>
-                    </div>                        
-                    <div class="subject">
-                        <span class="subject-name">Produktif DKV - Pa Sergio</span>
-                        <span class="subject-time">12:45 - 15:05</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">BK</span>
-                        <span class="subject-time">15:05 - 15:40</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Istirahat Sore</span>
-                        <span class="subject-time">15:40 - 16:00</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Projek Ipas</span>
-                        <span class="subject-time">16:00 - 17:00</span>
-                    </div>
-                </div>
-                
-                <div class="day-card">
-                    <h3>Rabu</h3>
-                    <div class="subject">
-                        <span class="subject-name">Matematika</span>
-                        <span class="subject-time">12:45 - 15:05</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Produktif DKV - Pa Supri</span>
-                        <span class="subject-time">15:05 - 15:40</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Istirahat</span>
-                        <span class="subject-time">15:40 - 16:00</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Produktif DKV - Pa Supri</span>
-                        <span class="subject-time">16:00 - 17:10</span>
-                    </div>
-                </div>
-                
-                <div class="day-card">
-                    <h3>Kamis</h3>
-                    <div class="subject">
-                        <span class="subject-name">Upacara</span>
-                        <span class="subject-time">06:30 - 07:40</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Produktif DKV-Gambar</span>
-                        <span class="subject-time">07:40 - 09:40</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Istirahat</span>
-                        <span class="subject-time">09:40 - 10:00</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">PJOK</span>
-                        <span class="subject-time">10:00 - 12:00</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">BK</span>
-                        <span class="subject-time">12:00 - 12:40</span>
-                    </div>
-                </div>
-                
-                <div class="day-card">
-                    <h3>Jumat</h3>
-                    <div class="subject">
-                        <span class="subject-name">Pengajian</span>
-                        <span class="subject-time">06:30 - 07:40</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Seni Musik</span>
-                        <span class="subject-time">07:40 - 09:00</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">PKN</span>
-                        <span class="subject-time">09:00 - 09:40</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Istirahat</span>
-                        <span class="subject-time">09:40 - 10:00</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">PKN</span>
-                        <span class="subject-time">10:00 - 10:40</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Produktif DKV - Pa Sergio</span>
-                        <span class="subject-time">10:40 - 11:20</span>
-                    </div>
-                </div>
+<div class="bg-art"></div>
+<div class="bg-pattern"></div>
+<div class="splash"></div>
+<div class="splash splash-left"></div>
+<div class="doodle">✏️🎨🖌️</div>
 
-                <div class="day-card">
-                    <h3>Sabtu</h3>
-                    <div class="subject">
-                        <span class="subject-name">Bahasa Indonesia</span>
-                        <span class="subject-time">07:00 - 09:40</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Istirahat</span>
-                        <span class="subject-time">09:40 - 10:00</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Bahasa Sunda</span>
-                        <span class="subject-time">10:00 - 11:20</span>
-                    </div>
-                    <div class="subject">
-                        <span class="subject-name">Projek Ipas</span>
-                        <span class="subject-time">11:20 - 12:40</span>
-                    </div>
-                </div>
+<header>
+    <h1>KELAS X-DKV</h1>
+    <div class="subtitle">Desain Komunikasi Visual</div>
+</header>
+
+<nav>
+    <button class="nav-btn active" data-target="structure">📌 Struktur Kelas</button>
+    <button class="nav-btn" data-target="duty">🧹 Jadwal Piket</button>
+    <button class="nav-btn" data-target="timetable">📚 Jadwal Pelajaran</button>
+    <button class="nav-btn" data-target="gallery">📸 Foto Kreasi</button>
+</nav>
+
+<div class="container">
+    <!-- Struktur Kelas dengan foto bersama -->
+    <section id="structure" class="content-section active">
+        <h2>🎭 Struktur Kelas</h2>
+        <div class="class-photo-container">
+            <div class="class-photo">
+                <img src="foto-kreasi/IMG_20260419_122406.jpg" alt="Potret Kelas X-DKV Hutan" onerror="this.src='https://placehold.co/800x450/f8ede0/c26f3a?text=X-DKV+Kelas+Hutan+2026'">
             </div>
-        </section>
-        
-        <!-- Foto Kreasi Kelas -->
-        <section id="gallery" class="content-section">
-            <h2>Foto-Foto Kreasi Kelas Hutan</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Kumpulan Foto Kreasi X-DKV</p>
-            
-            <div class="gallery">
-                <div class="gallery-item">
-                    <div class="placeholder-img">
-                        [Foto Kreasi X-DKV]
-                    </div>
-                    <div class="gallery-caption">
-                        Kreasi Kelas X-DKV
-                    </div>
-                </div>
-                
-                <div class="gallery-item">
-                    <div class="placeholder-img">
-                        [Foto Kreasi X-DKV]
-                    </div>
-                    <div class="gallery-caption">
-                        Kreasi Kelas X-DKV
-                    </div>
-                </div>
-                
-                <div class="gallery-item">
-                    <div class="placeholder-img">
-                        [Foto Kreasi X-DKV]
-                    </div>
-                    <div class="gallery-caption">
-                        Kreasi Kelas X-DKV
-                    </div>
-                </div>
-                
-                <div class="gallery-item">
-                    <div class="placeholder-img">
-                        [Foto Kreasi X-DKV]
-                    </div>
-                    <div class="gallery-caption">
-                        Kreasi Kelas X-DKV
-                    </div>
-                </div>
-                
-                <div class="gallery-item">
-                    <div class="placeholder-img">
-                        [Foto Kreasi X-DKV]
-                    </div>
-                    <div class="gallery-caption">
-                        Kreasi Kelas X-DKV
-                    </div>
-                </div>
-                
-                <div class="gallery-item">
-                    <div class="placeholder-img">
-                        [Foto Kreasi X-DKV]
-                    </div>
-                    <div class="gallery-caption">
-                        Kreasi Kelas X-DKV
-                    </div>
-                </div>
+            <p class="photo-caption">X-DKV | 2026</p>
+        </div>
+        <div class="class-structure">
+            <div class="class-card"><h3>👩‍🏫 Wali Kelas</h3><p>M. Ramdhan Azis. S.Pd.</p></div>
+            <div class="class-card"><h3>👑 Ketua Kelas</h3><p>M. Nizar Ali</p></div>
+            <div class="class-card"><h3>⚡ Wakil Ketua</h3><p>Satrio Nugroho</p></div>
+            <div class="class-card"><h3>📝 Sekretaris</h3><p>Selvi Febrianti<br>Keyla Alisa Rahman</p></div>
+            <div class="class-card"><h3>💰 Bendahara</h3><p>Davina Amelia<br>Alya Maulida Hafiz</p></div>
+            <div class="class-card"><h3>🧽 Koordinator Piket</h3><p>Rama Aughust Sanjaya<br>M. Ihsan Abdillah</p></div>
+        </div>
+    </section>
 
-                <div class="gallery-item">
-                    <div class="placeholder-img">
-                        [Foto Kreasi X-DKV]
-                    </div>
-                    <div class="gallery-caption">
-                        Kreasi Kelas X-DKV
-                    </div>
-                </div>
+    <!-- Jadwal Piket -->
+    <section id="duty" class="content-section">
+        <h2>🗓️ Jadwal Piket DKV</h2>
+        <div class="duty-schedule">
+            <table>
+                <thead><tr><th>Hari</th><th>👥 Petugas Piket</th></tr></thead>
+                <tbody>
+                    <tr><td>Senin</td><td>Hakim, Rehan, Hana, Radhinka, Nizar, Revan, Ridho</td></tr>
+                    <tr><td>Selasa</td><td>Alya, Farid, Fairuz, Rama, Kiya, Ludpi, Piana</td></tr>
+                    <tr><td>Rabu</td><td>Airlangga, Davina, Mahesa, Mulyani, Rafael, Salsabila</td></tr>
+                    <tr><td>Kamis</td><td>Bintang, Fahrudin, Ihsan, Nayla, Queen, Rezky</td></tr>
+                    <tr><td>Jumat</td><td>Dafina, Denis, Baldi, Nafis, Raka, Rasya, Selvi</td></tr>
+                    <tr><td>Sabtu</td><td>Cinta Cantika, Keyla, Fathur, Nelvanza, Nico, Revaldi, Satrio</td></tr>
+                </tbody>
+            </table>
+            <ul>
+                <li>Menyapu lantai kelas sebelum & sesudah pelajaran</li>
+                <li>Membersihkan papan tulis</li>
+                <li>Menmbereskan Meja dan Kursi Yang Berantakan</li>
+            </ul>
+        </div>
+    </section>
 
-                <div class="gallery-item">
-                    <div class="placeholder-img">
-                        [Foto Kreasi X-DKV]
-                    </div>
-                    <div class="gallery-caption">
-                        Kreasi Kelas X-DKV
-                    </div>
-                </div>
+    <!-- Jadwal Pelajaran lengkap & rapi -->
+    <section id="timetable" class="content-section">
+        <h2>⏰ Jadwal Pelajaran • X-DKV</h2>
+        <div class="timetable">
+            <div class="day-card"><h3>Senin</h3>
+                <div class="subject"><span class="subject-name">PBAI</span><span class="subject-time">12:45 - 14:30</span></div>
+                <div class="subject"><span class="subject-name">Sejarah</span><span class="subject-time">14:30 - 15:40</span></div>
+                <div class="subject"><span class="subject-name">Istirahat</span><span class="subject-time">15:40 - 16:00</span></div>
+                <div class="subject"><span class="subject-name">KKA</span><span class="subject-time">16:00 - 17:10</span></div>
             </div>
-            
-            <p style="color: var(--text-secondary); margin-top: 1.5rem; text-align: center;">
-                FOTO-FOTO KREASI KELAS X-DKV
-            </p>
-        </section>
-    </div>
+            <div class="day-card"><h3>Selasa</h3>
+                <div class="subject"><span class="subject-name">Informatika</span><span class="subject-time">07:30 - 09:45</span></div>
+                <div class="subject"><span class="subject-name">Istirahat Pagi</span><span class="subject-time">09:45 - 10:05</span></div>
+                <div class="subject"><span class="subject-name">Bahasa Inggris</span><span class="subject-time">10:05 - 12:20</span></div>
+                <div class="subject"><span class="subject-name">Istirahat Siang</span><span class="subject-time">12:20 - 12:45</span></div>
+                <div class="subject"><span class="subject-name">Produktif DKV - Pa Sergio</span><span class="subject-time">12:45 - 15:05</span></div>
+                <div class="subject"><span class="subject-name">BK</span><span class="subject-time">15:05 - 15:40</span></div>
+                <div class="subject"><span class="subject-name">Istirahat Sore</span><span class="subject-time">15:40 - 16:00</span></div>
+                <div class="subject"><span class="subject-name">Projek Ipas</span><span class="subject-time">16:00 - 17:00</span></div>
+            </div>
+            <div class="day-card"><h3>Rabu</h3>
+                <div class="subject"><span class="subject-name">Matematika</span><span class="subject-time">12:45 - 15:05</span></div>
+                <div class="subject"><span class="subject-name">Produktif DKV - Pa Supri</span><span class="subject-time">15:05 - 15:40</span></div>
+                <div class="subject"><span class="subject-name">Istirahat</span><span class="subject-time">15:40 - 16:00</span></div>
+                <div class="subject"><span class="subject-name">Produktif DKV - Pa Supri</span><span class="subject-time">16:00 - 17:10</span></div>
+            </div>
+            <div class="day-card"><h3>Kamis</h3>
+                <div class="subject"><span class="subject-name">Upacara</span><span class="subject-time">06:30 - 07:40</span></div>
+                <div class="subject"><span class="subject-name">Produktif DKV-Gambar</span><span class="subject-time">07:40 - 09:40</span></div>
+                <div class="subject"><span class="subject-name">Istirahat</span><span class="subject-time">09:40 - 10:00</span></div>
+                <div class="subject"><span class="subject-name">PJOK</span><span class="subject-time">10:00 - 12:00</span></div>
+                <div class="subject"><span class="subject-name">BK</span><span class="subject-time">12:00 - 12:40</span></div>
+            </div>
+            <div class="day-card"><h3>Jumat</h3>
+                <div class="subject"><span class="subject-name">Pengajian</span><span class="subject-time">06:30 - 07:40</span></div>
+                <div class="subject"><span class="subject-name">Seni Musik</span><span class="subject-time">07:40 - 09:00</span></div>
+                <div class="subject"><span class="subject-name">PKN</span><span class="subject-time">09:00 - 09:40</span></div>
+                <div class="subject"><span class="subject-name">Istirahat</span><span class="subject-time">09:40 - 10:00</span></div>
+                <div class="subject"><span class="subject-name">PKN</span><span class="subject-time">10:00 - 10:40</span></div>
+                <div class="subject"><span class="subject-name">Produktif DKV - Pa Sergio</span><span class="subject-time">10:40 - 11:20</span></div>
+            </div>
+            <div class="day-card"><h3>Sabtu</h3>
+                <div class="subject"><span class="subject-name">Bahasa Indonesia</span><span class="subject-time">07:00 - 09:40</span></div>
+                <div class="subject"><span class="subject-name">Istirahat</span><span class="subject-time">09:40 - 10:00</span></div>
+                <div class="subject"><span class="subject-name">Bahasa Sunda</span><span class="subject-time">10:00 - 11:20</span></div>
+                <div class="subject"><span class="subject-name">Projek Ipas</span><span class="subject-time">11:20 - 12:40</span></div>
+            </div>
+        </div>
+    </section>
 
-    <footer>
-        <p>&copy; 2026 X-DKV - Kelas Hutan</p>
-    </footer>
-    
-    <script>
-        // Membuat bintang-bintang di background
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            const starCount = 200;
-            
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                
-                // Ukuran acak untuk bintang
-                const size = Math.random() * 3;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                
-                // Posisi acak
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                
-                // Animasi delay acak
-                star.style.animationDelay = `${Math.random() * 5}s`;
-                
-                starsContainer.appendChild(star);
+    <!-- Galeri kreasi khas anak DKV -->
+    <section id="gallery" class="content-section">
+        <h2>🌟 Galeri Kreasi Kelas DKV</h2>
+        <p style="color: #ad6d3e; margin-bottom: 1rem; font-weight: 500;">Karya visual, eksperimen desain</p>
+        <div class="gallery">
+            <div class="gallery-item"><div class="placeholder-img">🎨 </div><div class="gallery-caption">Kreasi</div></div>
+            <div class="gallery-item"><div class="placeholder-img">🖌️ </div><div class="gallery-caption">Kreasi</div></div>
+            <div class="gallery-item"><div class="placeholder-img">📷 </div><div class="gallery-caption">Kreasi</div></div>
+            <div class="gallery-item"><div class="placeholder-img">🌀 </div><div class="gallery-caption">Kreasi</div></div>
+            <div class="gallery-item"><div class="placeholder-img">✏️ </div><div class="gallery-caption">Kreasi</div></div>
+            <div class="gallery-item"><div class="placeholder-img">🌈 </div><div class="gallery-caption">Kreasi</div></div>
+            <div class="gallery-item"><div class="placeholder-img">🧵 </div><div class="gallery-caption">Kreasi</div></div>
+            <div class="gallery-item"><div class="placeholder-img">📖 </div><div class="gallery-caption">Kreasi</div></div>
+        </div>
+        <p style="margin-top: 1.8rem; text-align: center; font-size: 0.9rem; color:#be7c4a;">FOTO-FOTO KREASI KELAS X-DKV • #KelasHutanKreatif</p>
+    </section>
+</div>
+
+<footer>
+    <p>© 2026 X-DKV • Kelas Hutan</p>
+</footer>
+
+<script>
+    // Navigasi antar section dengan smooth
+    const btns = document.querySelectorAll('.nav-btn');
+    const sections = {
+        structure: document.getElementById('structure'),
+        duty: document.getElementById('duty'),
+        timetable: document.getElementById('timetable'),
+        gallery: document.getElementById('gallery')
+    };
+
+    function activateSection(targetId) {
+        Object.keys(sections).forEach(id => {
+            sections[id].classList.remove('active');
+        });
+        sections[targetId].classList.add('active');
+        btns.forEach(btn => {
+            const btnTarget = btn.getAttribute('data-target');
+            if(btnTarget === targetId) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
             }
-        }
-        
-        // Navigasi antar section
-        document.querySelectorAll('.nav-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                // Hapus kelas active dari semua tombol dan section
-                document.querySelectorAll('.nav-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                document.querySelectorAll('.content-section').forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                // Tambah kelas active ke tombol yang diklik
-                this.classList.add('active');
-                
-                // Tampilkan section yang sesuai
-                const targetId = this.getAttribute('data-target');
-                document.getElementById(targetId).classList.add('active');
-            });
         });
-        
-        // Inisialisasi
-        document.addEventListener('DOMContentLoaded', function() {
-            createStars();
+    }
+
+    btns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const target = btn.getAttribute('data-target');
+            if(target && sections[target]) {
+                activateSection(target);
+            }
         });
-    </script>
+    });
+
+    // efek artistik pada gambar jika gagal load tetap bagus
+    const classPhoto = document.querySelector('.class-photo img');
+    if(classPhoto && classPhoto.naturalWidth === 0) {
+        classPhoto.onerror = function() {
+            this.src = 'https://placehold.co/800x450/f8ede0/c26f3a?text=Foto+Kelas+X-DKV+2026';
+        };
+    }
+</script>
 </body>
 </html>
-
-
